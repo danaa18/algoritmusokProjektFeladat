@@ -1,0 +1,64 @@
+import re
+
+# Függvény, amely bekéri és ellenőrzi, hogy a felhasználó egész számot adott-e meg
+def get_valid_number(prompt):
+    while True:
+        num = input(prompt)
+        if re.fullmatch(r'-?\d+', num):  # Ellenőrzi, hogy szám-e (pozitív vagy negatív egész szám)
+            return num
+        print("Hibás bevitel! Kérem, adjon meg egy egész számot.")
+
+# Üdvözlő üzenet a program elején
+print("*******************************")
+print("Üdvözlöm, ez a 8. csoport projektfeladata!")
+print("*******************************\n")
+
+# Matematikai műveletek végrehajtása sztringként kapott számokon
+def string_add(num1: str, num2: str) -> str:
+    return str(int(num1) + int(num2))  # Összeadás
+
+def string_subtract(num1: str, num2: str) -> str:
+    return str(int(num1) - int(num2))  # Kivonás
+
+def string_compare(num1: str, num2: str) -> int:
+    if int(num1) < int(num2):
+        return 1  # Első szám kisebb
+    elif int(num1) > int(num2):
+        return -1  # Második szám kisebb
+    else:
+        return 0  # Egyenlők
+
+def string_multiply(num1: str, num2: str) -> str:
+    return str(int(num1) * int(num2))  # Szorzás
+
+# Felhasználói bemenet validációval (csak egész számokat fogad el)
+num1 = get_valid_number("Kérem az első számot: ")
+num2 = get_valid_number("Kérem a második számot: ")
+
+# Eredmények kiírása
+print("\n*******************************")
+print("Eredmények:")
+print("*******************************")
+print("Összeadás: ", string_add(num1, num2))
+print("Kivonás: ", string_subtract(num1, num2))
+print("Összehasonlítás: ", string_compare(num1, num2))
+print("Szorzás: ", string_multiply(num1, num2))
+
+# Újraindítási lehetőség a felhasználónak
+while True:
+    restart = input("\nSzeretné újra futtatni a programot? (igen/nem): ").strip().lower()
+    if restart == "igen":
+        num1 = get_valid_number("Kérem az első számot: ")
+        num2 = get_valid_number("Kérem a második számot: ")
+        print("\n*******************************")
+        print("Eredmények:")
+        print("*******************************")
+        print("Összeadás: ", string_add(num1, num2))
+        print("Kivonás: ", string_subtract(num1, num2))
+        print("Összehasonlítás: ", string_compare(num1, num2))
+        print("Szorzás: ", string_multiply(num1, num2))
+    elif restart == "nem":
+        print("Köszönöm, hogy használta a programot!")
+        break  # Kilép a ciklusból és befejezi a programot
+    else:
+        print("Kérem, válasszon 'igen' vagy 'nem' lehetőséget.")  # Hibás válasz esetén újra kéri a választ
